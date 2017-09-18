@@ -1,0 +1,12 @@
+---
+flows:
+- steps:
+  - kind: endpoint
+    uri: twitter-search--KuJU1I0P_3BUe5WXQ9M:jolokia?delay=1000&filterOld=false
+  - kind: endpoint
+    uri: atlas:mapping-step-2.json
+  - kind: filter
+    expression: ${body.text} contains 'hawtio'
+    steps:
+    - kind: endpoint
+      uri: salesforce-upsert-sobject--KuJUCExP_3BUe5WXQ9N?sObjectIdName=TwitterScreenName__c&sObjectName=Contact
